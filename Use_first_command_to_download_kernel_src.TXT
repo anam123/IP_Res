@@ -1,0 +1,24 @@
+
+  - Download Kernel src
+     $ git clone -b android-msm-dory-3.10-lollipop-wear-release https://android.googlesource.com/kernel/msm
+     
+  - Run following scripts to build kernel
+     a) cd kernel folder
+     b) download and register tool chain
+        When you compile the kernel source code, you have to add google original prebuilt source(toolchain) into the android directory.
+        Downloading a prebuilt gcc
+        Ensure that the prebuilt toolchain is in your path.
+        $ export PATH=$(pwd)/prebuilts/gcc/linux-x86/arm/arm-eabi-4.6/bin:$PATH
+         or
+        $ export PATH=$(pwd)/prebuilts/gcc/darwin-x86/arm/arm-eabi-4.6/bin:$PATH
+        On a linux host, if you don't have an Android source tree, you can download the prebuilt toolchain from:
+        $ git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.6
+        
+     c) configure kernel config
+        $ make CROSS_COMPILE=arm-eabi- ARCH=arm dory_defconfig   
+        
+     d) build kernel
+        $ make CROSS_COMPILE=arm-eabi- ARCH=arm
+        
+  - After build, you can find the build image(zImage) at arch/arm/boot/zImage-dtb
+  
